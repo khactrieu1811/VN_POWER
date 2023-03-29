@@ -1,0 +1,144 @@
+﻿ ﻿@using Business.IRepostitory
+@using Model
+@inject ICategoryProductRepository CategoryProductRepository
+l
+@model CategoryProductModel
+@{ ViewData["Title"] = "Add Category Product";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/categories/index">Danh sách chuyên mục</a></li>
+                        <li class="breadcrumb-item active">Nhập chuyên mục</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập chuyên mục sản phẩm</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/categoryProducts/Add" method="post" enctype="multipart/form-data" name="mainform">
+
+                            <div class="form-group row">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Tên chuyên mục sản phẩm</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập tên chuyên mục" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 mb-2">
+                                    <label class="col-form-label col-md-2">Mô tả chuyên mục</label>
+                                    <div class="col-md-10 m-b-50">
+                                        @await Component.InvokeAsync("TextEditor")
+                                        <input asp-for="Description" id="Description" hidden />
+                                        <div id="editor-container" style="min-height:300px">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Thẻ meta</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="MetaDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Page title</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="PageTitle"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Path</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="Path"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Colour</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="Colour"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 js-ajaxUploadImages">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Hình ảnh</label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="form-control" asp-for="FileImage">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Extended data string</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="ExtendedDataString"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group" id="DisplayOrderToHome">
+                                        <label class="col-form-label col-md-2">Chuyên mục cha</label>
+                                        <div class="col-md-10">
+                                            <select class="select" asp-for="ParentId" onchange="categoryChange()">
+                                                <option>Select</option>
+                                                <option value="">Không có chuyên mục cha</option>/>
+                                                @foreach (var item in CategoryProductRepository.GetAllData().ToList())
+                                                {
+                                    <option value="@item.Id">@item.Name</option>}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Vị trí</label>
+                                        <div class="col-md-10">
+                                            <input type="number" class="form-control" asp-for="OrderDisplay" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/CategoryProduct/CategoryProductAddorEdit.js"></script>
+}

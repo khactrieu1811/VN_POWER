@@ -1,0 +1,191 @@
+﻿@using Business.IRepostitory
+@inject ICategoryProductRepository CategoryProductRepository
+@using Model
+@model ProductModel
+@{
+    ViewData["Title"] = "AddProductr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/banners/getall">Quản lý sản phẩm</a></li>
+                        <li class="breadcrumb-item active">Sửa sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập sản phẩm</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/products/Edit/@Model.Id" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-4">Tên sản phẩm</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập tên sản phẩm" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Mô tả ngắn</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-4">Chuyên mục sản phẩm</label>
+                                        <div class="col-md-10">
+                                            <select class="select" asp-for="CategoryId" onchange="categoryChange()">
+                                                <option>Select</option>
+                                                @foreach (var item in CategoryProductRepository.GetAllData().ToList())
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 js-ajaxUploadImages">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Hình ảnh</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control col-md-10" type="file" asp-for="FileImage" required>
+                                            @if (!string.IsNullOrEmpty(Model.Image))
+                                            {
+                                                <a href="/@Model.Image" target="_blank"><img src="/@Model.Image" style="margin-top:10px" height="100" width="100" /></a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Thẻ meta</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="MetaDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Giá bán</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="number" asp-for="Price" min="0" title="Giá bán phải lớn hơn hoặc bằng 0" placeholder="Nhập giá bán" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-4">Giá khuyến mãi</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="number" asp-for="PromotionPrice" min="0" title="Giá bán phải lớn hơn hoặc bằng 0" th placeholder="Nhập giá bán khuyến mãi">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Ngày bắt đầu</label>
+                                        <div class="cal-icon col-md-10" id='datetimepickerFromdate'>
+                                            <input type="datetime" class="form-control datetimepickerFromdate" asp-for="PromotionStartDate" min="0/0/0000" value="@Model.PromotionStartDate.ToString("dd/MM/yyyy HH:mm")" placeholder="Nhập ngày bắt đầu khuyến mãi">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Ngày kết thúc</label>
+                                        <div class="cal-icon col-md-10" id='datetimepickerTodate'>
+                                            <input type="datetime" class="form-control datetimepickerTodate" asp-for="PromotionEndDate" value="@Model.PromotionEndDate.ToString("dd/MM/yyyy HH:mm")" min="0/0/0000" placeholder="Nhập ngày kết thúc khuyến mãi">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Số lượng</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="number" asp-for="Quantity" min="0" title="Số lượng phải lớn hơn hoặc bằng 0" placeholder="Nhập số lượng sản phẩm" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Thời gian bảo hành</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="1" cols="1" class="form-control" placeholder="Enter text here" asp-for="Warranty"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 mb-2">
+                                    <label class="col-form-label col-md-2">Chi tiết sản phẩm</label>
+                                    <div class="col-md-10 m-b-50">
+                                        @await Component.InvokeAsync("TextEditor")
+                                        <input asp-for="Detail" id="Detail" hidden />
+                                        <div id="editor-container" style="min-height:300px">
+                                            @Html.Raw(Model.Detail)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="col-md-2">
+                                                <input type="checkbox" asp-for="IsHotPost"> Sticky to Home
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                @{ var display = !Model.IsHotPost ? "d-none" : "";}
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group @display" id="DisplayOrderToHome">
+                                        <label class="col-form-label col-md-2">Vị trí</label>
+                                        <div class="col-md-10">
+                                            <input type="number" class="form-control" asp-for="DisplayOrder">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Products/ProductAddorEdit.js"></script>
+    <script>
+        $("#IsHotPost").change(function () {
+            if (this.checked) {
+                $("#DisplayOrderToHome").removeClass("d-none")
+            }
+            else {
+                $("#DisplayOrderToHome").addClass("d-none")
+            }
+        });
+    </script>
+}

@@ -1,0 +1,14 @@
+
+*/bin/*
+*/obj/*
+/.vs/MyHealth/config/applicationhost.config
+/.vs/MyHealth/DesignTimeBuild/.dtbcache
+/.vs/MyHealth/DesignTimeBuild/.dtbcache.v2
+/.vs/MyHealth/v16/.suo
+/.vs/MyHealth/v16/Server/sqlite3/db.lock
+/.vs/MyHealth/v16/Server/sqlite3/storage.ide
+/.vs/Education/config/applicationhost.config
+/.vs/Education/DesignTimeBuild/.dtbcache.v2
+/.vs/Education/v16/.suo
+/Website/wwwroot/UploadFiles/Images/*
+/Website/appsetting.json

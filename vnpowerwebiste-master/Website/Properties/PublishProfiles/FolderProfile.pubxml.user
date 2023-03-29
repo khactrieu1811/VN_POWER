@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Code\Customer\BanThong\Education\Website\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2021-09-10T13:11:08.9957237Z;True|2021-09-10T20:08:10.3480202+07:00;True|2021-09-10T19:51:09.6981085+07:00;True|2021-09-09T20:26:37.7571414+07:00;True|2021-09-08T20:51:13.1065475+07:00;True|2021-09-06T19:24:01.2790244+07:00;True|2021-09-05T17:35:00.4542045+07:00;True|2021-09-05T12:31:02.5260936+07:00;True|2021-09-05T12:01:54.8616860+07:00;True|2021-09-05T11:32:53.2177630+07:00;True|2021-09-05T09:24:50.4523795+07:00;True|2021-09-05T09:12:39.5686043+07:00;True|2021-09-05T08:48:39.1502059+07:00;</History>
+  </PropertyGroup>
+</Project>

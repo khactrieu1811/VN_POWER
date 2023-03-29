@@ -1,0 +1,60 @@
+﻿@using Entities.Helpers
+@using Model
+@model BaseViewModel<ProductModel>
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!-- End Preloader -->
+<!--Main content-->
+<section class="container margin-bottom-50">
+    <div class="tm-overflow-hidden row">
+        <div class="tm-gallery col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <h3 class="tm-gallery-title">Chi tiết sản phẩm</h3>
+            <hr color="green" border="2px" class="hr" />
+            @foreach (var i in Model.List)
+            {
+                <div class="">
+                    <div class="tm-item-price-container">
+                        <img class="img" src="~/@i.Image" alt="Image">
+                        <div class="detail-container">
+                            <p class="detail-item-description">@i.Name</p>
+                            <hr color="green" border="2px" class="hr" />
+                            <p><b>Danh mục sản phẩm:</b> @i.CategoryName</p>
+                            <p>
+                                <b>Bảo hành:</b>
+                                @if (i.Warranty != null)
+                                {
+                                    @i.Warranty
+                                }
+                                else
+                                {
+                                    <span>Không</span>
+                                }
+                            </p>
+                            <p class=""><b>Giá bán:</b> @i.Price <span style="font-size:20px">&#8363;</span></p>
+                            <a href="#" class="tm-item-link">
+                                <span style="font-size:16px" class="tm-item-action">Thêm vào giỏ</span>
+                                <img src="~/webdemo/img//plus.png" class="tm-item-add-icon" alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="tm-gallery-title">
+                        Mô tả sản phẩm<h3>
+                            <hr color="green" border="2px" class="hr" />
+                            <div class="font-size">
+                                @Html.Raw(i.Detail)
+                            </div>
+                </div>
+            }
+        </div>
+        <partial name="_LeftMenuProduct" />
+    </div>
+
+    <!--banner-->
+</section> <!-- Main content -->

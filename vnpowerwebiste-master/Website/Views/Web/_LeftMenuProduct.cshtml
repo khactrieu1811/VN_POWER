@@ -1,0 +1,54 @@
+﻿
+@using Business.IRepostitory
+@using System.Security.Claims
+@inject ICategoryProductRepository CategoryProducRepository
+@{
+    var Menus = await CategoryProducRepository.GetAllCategoryProduct();
+}
+<aside class="tm-gallery-aside col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <nav class="tm-gallery-nav">
+        <h2 class="tm-gallery-nav-title">Category <i style="color:#23A455" class="fa fa-caret-up"></i></h2>
+        <ul>
+            @if (Menus.Any())
+            {
+                foreach (var menu in Menus.Where(x => x.ParentId == null).OrderBy(x => x.OrderDisplay))
+                {
+                    var children = Menus.Where(x => x.ParentId != null && x.ParentId == menu.Id).ToList().OrderBy(x => x.OrderDisplay);
+                        if (children.Any())
+                        {
+                            <li class="submenu">
+                                <p >
+                                    @menu.Slug
+                                    <i class="fa fa-caret-right tm-gallery-list-fa"></i>
+                                </p>
+                                <ul class="none">
+                                    @foreach (var child in children)
+                                    {
+                                        <li>
+                                            <a href="/Web/Products/@child.Slug">
+                                                @child.Name
+                                                <i class="fa fa-caret-right tm-gallery-list-fa"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="/Web/Products/@menu.Slug">
+                                    @menu.Name
+                                    <i class="fa fa-caret-right tm-gallery-list-fa"></i>
+                                </a>
+                            </li>
+                        }
+
+
+                    }
+                }
+        </ul>
+    </nav>
+</aside>

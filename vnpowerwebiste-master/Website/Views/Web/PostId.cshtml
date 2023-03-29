@@ -1,0 +1,48 @@
+﻿@using Entities.Helpers
+@using Entities.Entities
+@model BaseViewModel<Post>
+@{
+    ViewData["Title"] = "VNPOWER-Bài viết";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    PagedResultBase pagingModel = new PagedResultBase()
+    {
+        CurrentPage = Model.Data.PageIndex,
+        PageCount = Model.Data.TotalPages,
+        HasNextPage = Model.Data.HasNextPage,
+        HasPreviousPage = Model.Data.HasPreviousPage
+    };
+}
+
+<body class="services-page">
+
+    <!-- Preloader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Preloader -->
+    <!--Main content-->
+    <section class="container margin-bottom-50">
+        <div class="tm-overflow-hidden row">
+            <div class="tm-gallery col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                <h3 class="tm-gallery-title">Tất cả bài viết</h3>
+                <hr color="green" border="2px" class="hr" />
+                @if (Model.Data.Any())
+                {
+                    @foreach (var m in Model.Data)
+                    {
+                        <div class="tm-item-container">
+                            <h3 class="about-title-2">@m.Name</h3>
+                            <img src="~/@m.Image" alt="Image" class="img-responsive margin-bottom-15">
+                            <p class="about-description">@m.Description</p>
+                            <a href="/Web/Posts/Chi-tiet/@m.Slug" class="about-link about-link-2">Xem chi tiết</a>
+                        </div>
+                    }
+                }
+                @await Component.InvokeAsync("PagerView", pagingModel)
+            </div>
+            <partial name="_LeftMenuPost" />
+        </div>
+    </section> <!-- Main content -->
+</body>

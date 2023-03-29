@@ -1,0 +1,127 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200316021410_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316021410_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316021844_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316021844_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316022200_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316022200_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316022926_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316022926_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316023034_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316023034_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316023212_updDanhmuc.cs" />
+    <Compile Remove="Migrations\20200316023212_updDanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316023848_updDanhmucQHPX.cs" />
+    <Compile Remove="Migrations\20200316023848_updDanhmucQHPX.Designer.cs" />
+    <Compile Remove="Migrations\20200316024149_updDanhmucQHPX.cs" />
+    <Compile Remove="Migrations\20200316024149_updDanhmucQHPX.Designer.cs" />
+    <Compile Remove="Migrations\20200316044948_danhmuckhachhang.cs" />
+    <Compile Remove="Migrations\20200316044948_danhmuckhachhang.Designer.cs" />
+    <Compile Remove="Migrations\20200316065305_danhmuckhachhang.cs" />
+    <Compile Remove="Migrations\20200316065305_danhmuckhachhang.Designer.cs" />
+    <Compile Remove="Migrations\20200316070605_upddanhmuc.cs" />
+    <Compile Remove="Migrations\20200316070605_upddanhmuc.Designer.cs" />
+    <Compile Remove="Migrations\20200316071739_DanhmucThongtinKhachhang.cs" />
+    <Compile Remove="Migrations\20200316071739_DanhmucThongtinKhachhang.Designer.cs" />
+    <Compile Remove="Migrations\20200316072024_DanhmucTTKH.cs" />
+    <Compile Remove="Migrations\20200316072024_DanhmucTTKH.Designer.cs" />
+    <Compile Remove="Migrations\20200316072504_DanhmucTTKH.cs" />
+    <Compile Remove="Migrations\20200316072504_DanhmucTTKH.Designer.cs" />
+    <Compile Remove="Migrations\20200316072624_DanhmucTTKH.cs" />
+    <Compile Remove="Migrations\20200316072624_DanhmucTTKH.Designer.cs" />
+    <Compile Remove="Migrations\20200316074121_AddDanhmucKH.cs" />
+    <Compile Remove="Migrations\20200316074121_AddDanhmucKH.Designer.cs" />
+    <Compile Remove="Migrations\20200316085346_DanhmucUser.cs" />
+    <Compile Remove="Migrations\20200316085346_DanhmucUser.Designer.cs" />
+    <Compile Remove="Migrations\20200319132156_adddanhmucpatientcareandkhachhang.cs" />
+    <Compile Remove="Migrations\20200319132156_adddanhmucpatientcareandkhachhang.Designer.cs" />
+    <Compile Remove="Migrations\20200319132240_addduservanguoithan.cs" />
+    <Compile Remove="Migrations\20200319132240_addduservanguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320043915_addduservanguoithan.cs" />
+    <Compile Remove="Migrations\20200320043915_addduservanguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320044501_addduservanguoithan.cs" />
+    <Compile Remove="Migrations\20200320044501_addduservanguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320045055_addduservanguoithan.cs" />
+    <Compile Remove="Migrations\20200320045055_addduservanguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320050129_addduservanguoithan.cs" />
+    <Compile Remove="Migrations\20200320050129_addduservanguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320050341_adddusernguoithan.cs" />
+    <Compile Remove="Migrations\20200320050341_adddusernguoithan.Designer.cs" />
+    <Compile Remove="Migrations\20200320102042_UpdDanhmucPatientCare.cs" />
+    <Compile Remove="Migrations\20200320102042_UpdDanhmucPatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200320103100_UpdDanhmucPatientCare.cs" />
+    <Compile Remove="Migrations\20200320103100_UpdDanhmucPatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200320103309_UpdDanhmucPatientCare.cs" />
+    <Compile Remove="Migrations\20200320103309_UpdDanhmucPatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200321030706_AddDonViXN.cs" />
+    <Compile Remove="Migrations\20200321030706_AddDonViXN.Designer.cs" />
+    <Compile Remove="Migrations\20200321042115_NghiepVuPatientCare.cs" />
+    <Compile Remove="Migrations\20200321042115_NghiepVuPatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200323021349_UpdFPKNghiepVu_PatientCare.cs" />
+    <Compile Remove="Migrations\20200323021349_UpdFPKNghiepVu_PatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200323090048_AddColumns.cs" />
+    <Compile Remove="Migrations\20200323090048_AddColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200323090258_AddColumns.cs" />
+    <Compile Remove="Migrations\20200323090258_AddColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200323091300_AddColumns.cs" />
+    <Compile Remove="Migrations\20200323091300_AddColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200323092517_AddCols.cs" />
+    <Compile Remove="Migrations\20200323092517_AddCols.Designer.cs" />
+    <Compile Remove="Migrations\20200323093142_AddCols.cs" />
+    <Compile Remove="Migrations\20200323093142_AddCols.Designer.cs" />
+    <Compile Remove="Migrations\20200323093538_AddColumns.cs" />
+    <Compile Remove="Migrations\20200323093538_AddColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200326103441_AddDanhMucChucNang.cs" />
+    <Compile Remove="Migrations\20200326103441_AddDanhMucChucNang.Designer.cs" />
+    <Compile Remove="Migrations\20200418095117_UpdDanhMucSLSS_1.cs" />
+    <Compile Remove="Migrations\20200418095117_UpdDanhMucSLSS_1.Designer.cs" />
+    <Compile Remove="Migrations\20200418095800_UpdDanhMucSLSS_1.cs" />
+    <Compile Remove="Migrations\20200418095800_UpdDanhMucSLSS_1.Designer.cs" />
+    <Compile Remove="Migrations\20200418100336_UpdDMCauHinhDVSLSS.cs" />
+    <Compile Remove="Migrations\20200418100336_UpdDMCauHinhDVSLSS.Designer.cs" />
+    <Compile Remove="Migrations\20200418100737_UpdDMCauHinhDVSLSS_V1.cs" />
+    <Compile Remove="Migrations\20200418100737_UpdDMCauHinhDVSLSS_V1.Designer.cs" />
+    <Compile Remove="Migrations\20200418100812_UpdDMCauHinhDVSLSS_V1.cs" />
+    <Compile Remove="Migrations\20200418100812_UpdDMCauHinhDVSLSS_V1.Designer.cs" />
+    <Compile Remove="Migrations\20200429065145_UpdDatabase_DanhMuc_SLSS_PatientCare.cs" />
+    <Compile Remove="Migrations\20200429065145_UpdDatabase_DanhMuc_SLSS_PatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200429065423_UpdDatabase_DanhMuc_SLSS_PatientCare.cs" />
+    <Compile Remove="Migrations\20200429065423_UpdDatabase_DanhMuc_SLSS_PatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200429072014_UpdDatabase_DanhMuc_SLSS_PatientCare.cs" />
+    <Compile Remove="Migrations\20200429072014_UpdDatabase_DanhMuc_SLSS_PatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200429083924_UpdDatabase_DanhMuc_SLSS_PatientCare.cs" />
+    <Compile Remove="Migrations\20200429083924_UpdDatabase_DanhMuc_SLSS_PatientCare.Designer.cs" />
+    <Compile Remove="Migrations\20200429092144_UpdDatabaseNghiepVu.cs" />
+    <Compile Remove="Migrations\20200429092144_UpdDatabaseNghiepVu.Designer.cs" />
+    <Compile Remove="Migrations\20200429103746_UpdDatabaseNghiepVu_v1.cs" />
+    <Compile Remove="Migrations\20200429103746_UpdDatabaseNghiepVu_v1.Designer.cs" />
+    <Compile Remove="Migrations\20200429104245_UpdDbNghiepvu.cs" />
+    <Compile Remove="Migrations\20200429104245_UpdDbNghiepvu.Designer.cs" />
+    <Compile Remove="Migrations\20200429104628_UpdDbNghiepvu.cs" />
+    <Compile Remove="Migrations\20200429104628_UpdDbNghiepvu.Designer.cs" />
+    <Compile Remove="Migrations\20200429153159_UpdDbNghiepvu.cs" />
+    <Compile Remove="Migrations\20200429153159_UpdDbNghiepvu.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DAL\DbInitializer.cs~RF11fc8b5d.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

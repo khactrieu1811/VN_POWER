@@ -1,0 +1,45 @@
+﻿@using Entities.Helpers
+@model PaginatedList<object>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var urlTemplate = Url.Action() + "?page={0}";
+    var request = ViewContext.HttpContext.Request;
+    foreach (var key in request.Query.Keys)
+    {
+        if (key == "page")
+        {
+            continue;
+        }
+
+        urlTemplate += "&" + key + "=" + request.Query[key];
+    }
+
+    var startIndex = Math.Max(Model.PageIndex - 5, 1);
+    var finishIndex = Math.Min(Model.PageIndex + 5, Model.TotalPages);
+}
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-circle">
+
+            <li class="page-item @prevDisabled"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-left"></i></a></li>
+            @for (int i = startIndex; i <= finishIndex; i++)
+            {
+                @if (i == Model.PageIndex)
+                {
+                    <li class="page-item active"><a class="page-link" href="">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
+
+
+                }
+            }
+            <li class="page-item @nextDisabled"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-right"></i></a></li>
+
+        </ul>
+    </nav>
+}
+

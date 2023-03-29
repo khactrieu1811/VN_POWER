@@ -1,0 +1,110 @@
+﻿@using Business.IRepostitory
+@using Model
+@inject IMenuRepository MenuRepository
+@model MenuModel
+@{
+    ViewData["Title"] = "add Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/menus/index">Danh sách Menu</a></li>
+                        <li class="breadcrumb-item active">Nhập menu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập Menu</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/menus/Add" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                               
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Tên Menu</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập tên" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Tên Menu Tiếng anh</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="NameEng" placeholder="Nhập tên " required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Đường dẫn trang web</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" asp-for="ExternalUrl" placeholder="Nhập đường dẫn(nếu có)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Vị trí</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" asp-for="DisplayOrder">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Menu cha</label>
+                                        <div class="col-md-10">
+                                            <select class="select" asp-for="ParentMenuId">
+                                                <option value="@Guid.Empty">Select</option>
+                                                @foreach (var item in MenuRepository.GetAllData().Where(x => !x.IsAdmin && x.ParentMenuId == null).OrderBy(x => x.Name).ToList())
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-md-10 checkbox">
+                                            <label>
+                                                <input type="checkbox" asp-for="Visible"> Hiện
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

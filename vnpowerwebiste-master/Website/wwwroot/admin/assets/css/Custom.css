@@ -1,0 +1,260 @@
+﻿tab-content.schedule-cont .card-title {
+    margin-bottom: 10px;
+}
+
+.doc-times {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.doc-slot-list {
+    background-color: #d9534f;
+    border: 1px solid #d43f3a;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    margin: 10px 10px 0 0;
+    padding: 6px 15px;
+}
+.doc-slot-off-list {
+    background-color: #8c8585;
+    border: 1px solid #d43f3a;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    margin: 10px 10px 0 0;
+    padding: 6px 15px;
+}
+
+    .doc-slot-list a {
+        color: #e48784;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+        .doc-slot-list a:hover {
+            color: #fff;
+        }
+
+.schedule-nav .nav-tabs {
+    border: 0 !important;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+    .schedule-nav .nav-tabs li {
+        margin: 5px 15px 5px 0;
+        display: inline-block;
+    }
+
+        .schedule-nav .nav-tabs li:last-child {
+            margin-right: 0;
+        }
+
+    .schedule-nav .nav-tabs > li > a {
+        border: 1px solid #dcddea;
+        border-radius: 4px;
+        padding: 6px 15px;
+        text-transform: uppercase;
+    }
+
+    .schedule-nav .nav-tabs li a.active {
+        background: #ff4877;
+        border: 1px solid #ff4877 !important;
+        color: #fff;
+    }
+
+.hours-info .form-control {
+    min-height: auto;
+}
+
+.hours-info .btn.btn-danger.trash {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 38px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+}
+
+.edit-link {
+    color: #20c0f3;
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+/*-----------------
+	18. Booking
+-----------------------*/
+
+.booking-doc-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+    .booking-doc-info .booking-doc-img {
+        width: 80px;
+        margin-right: 15px;
+    }
+
+        .booking-doc-info .booking-doc-img img {
+            border-radius: 4px;
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+        }
+
+.schedule-widget {
+    border-radius: 4px;
+    min-height: 100px;
+}
+
+.schedule-header h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 3px 0 0;
+}
+
+.schedule-header {
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 4px 4px 0 0;
+    padding: 10px 20px;
+}
+
+.day-slot ul {
+    float: left;
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+.day-slot li {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    width: 14.28%;
+}
+
+    .day-slot li span {
+        display: block;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+        .day-slot li span.slot-date {
+            display: block;
+            color: #757575;
+            font-size: 14px;
+        }
+
+    .day-slot li small.slot-year {
+        color: #757575;
+        font-size: 14px;
+    }
+
+    .day-slot li.left-arrow {
+        left: 0;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: 20px !important;
+        transform: translateY(-50%);
+    }
+
+    .day-slot li.right-arrow {
+        right: -11px;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: 20px !important;
+        transform: translateY(-50%);
+    }
+
+.schedule-cont {
+    padding: 20px;
+}
+
+.time-slot ul {
+    list-style: none;
+    margin-right: -5px;
+    margin-left: -5px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.time-slot li {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 14.28%;
+}
+
+    .time-slot li .timing {
+        background-color: #e9e9e9;
+        border: 1px solid #e9e9e9;
+        border-radius: 3px;
+        color: #757575;
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding: 5px 5px;
+        text-align: center;
+        position: relative;
+    }
+
+        .time-slot li .timing:hover {
+            background-color: #fff;
+        }
+
+        .time-slot li .timing:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-slot li .timing.selected {
+            background-color: #42c0fb;
+            border: 1px solid #42c0fb;
+            color: #fff;
+        }
+
+            .time-slot li .timing.selected::before {
+                color: #fff;
+                content: "\f00c";
+                font-family: "Font Awesome 5 Free";
+                font-size: 12px;
+                font-weight: 900;
+                position: absolute;
+                right: 6px;
+                top: 6px;
+            }
+
+.schedule-list {
+    border-bottom: 1px solid #cfcfcf;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
+
+    .schedule-list:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+.submit-section.proceed-btn {
+    margin: 0 0 30px;
+}

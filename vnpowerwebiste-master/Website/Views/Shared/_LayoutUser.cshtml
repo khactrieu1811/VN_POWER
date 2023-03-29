@@ -1,0 +1,70 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="">
+    <!--
+    Motor Template
+    http://www.templatemo.com/tm-463-motor
+    -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="~/webdemo/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/webdemo/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/webdemo/css/templatemo-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/webdemo/css/menu.css">
+    <link rel="stylesheet" href="~/webdemo/css/detail-style.css">
+    <link rel="stylesheet" href="~/webdemo/css/style.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="about-page">
+    <section class="templatemo-top-section">
+        <div class="background-color">
+            <partial name="_header" />
+            <div class="templatemo-nav-container">
+                <nav class="templatemo-nav">
+                    <ul>
+                        <li><a asp-controller="Web" asp-action="Index">Trang Chủ</a></li>
+                        <li><a asp-controller="Web" asp-action="Products">Sản Phẩm</a></li>
+                        <li><a asp-controller="Web" asp-action="Posts">Bài Viết</a></li>
+                        <li><a asp-controller="Web" asp-action="Contact">Liên Hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <partial name="_banner" />
+    </section>
+
+    @RenderBody()
+
+    <!--Footer content-->
+    <partial name="_footer" />
+    <!-- JS -->
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript" src="~/webdemo/js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+    <script type="text/javascript" src="~/webdemo/js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+    <script defer src="~/webdemo/js/jquery.flexslider-min.js"></script><!-- FlexSlider -->
+    <script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshow: false,
+                prevText: "&#xf104;",
+                nextText: "&#xf105;"
+            });
+
+            // Remove preloader
+            // https://ihatetomatoes.net/create-custom-preloading-screen/
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

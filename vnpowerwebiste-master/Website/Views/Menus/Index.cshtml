@@ -1,0 +1,107 @@
+﻿@using Entities.Helpers
+@using Entities.Entities
+@model BaseViewModel<NavigationMenu>
+@{
+    PagedResultBase pagingModel = new PagedResultBase()
+    {
+        CurrentPage = Model.Data.PageIndex,
+        PageCount = Model.Data.TotalPages,
+        HasNextPage = Model.Data.HasNextPage,
+        HasPreviousPage = Model.Data.HasPreviousPage
+    };
+}
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5 col">
+                    <a href="/menus/Add" class="btn btn-primary float-right mt-2">Thêm mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Tên Tiếng Anh</th>
+                                        <th>Link bài viết</th>
+                                        <th>Vị trí</th>
+                                        <th>Menu cha</th>
+                                        <th>Trạng thái</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data.Any())
+                                    {
+                                        @foreach (var q in Model.Data)
+                                        {
+
+                                    <tr>
+                                        <td>@q.Name</td>
+                                        <td>@q.NameEng</td>
+                                     
+                                        <td><a href="@q.ExternalUrl" target="_blank"> Xem</a></td>
+
+                                        <td>
+                                            @q.DisplayOrder
+
+                                        </td>
+                                        <td>@q.ParentNavigationMenu?.Name</td>
+                                        
+                                        <td>
+
+                                            @if (q.Visible)
+                                            {
+                                                <span class="badge badge-pill bg-success inv-badge">Đang hoạt động</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-pill bg-danger inv-badge">Đã tắt</span>
+                                            }
+                                            
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="actions">
+                                                <a href="/menus/Edit/@q.Id" class="btn btn-sm bg-primary-light">
+                                                    <i class="fe fe-pencil"></i> Chỉnh sửa
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                           
+                                        }
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @await Component.InvokeAsync("PagerView", pagingModel)
+        </div>
+
+
+        <!-- Delete Modal -->
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Partner.js"></script>
+}

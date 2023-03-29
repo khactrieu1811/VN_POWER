@@ -1,0 +1,102 @@
+﻿@using Model
+@model ServiceModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/services/Index">Danh sách Dịch vụ</a></li>
+                        <li class="breadcrumb-item active">Nhập Dịch vụ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập dịch vụ</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/services/Edit" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Tên Dịch vụ</label>
+                                        <input type="text" asp-for="Id" hidden />
+                                        <input type="text" asp-for="Status" hidden />
+                                        <input type="text" asp-for="Logo" hidden />
+                                        <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập tên dịch vụ" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mô tả</label>
+                                        <input class="form-control" type="text" asp-for="Description" placeholder="Nhập Mô tả" />
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Đường dẫn trang web</label>
+                                        <input class="form-control" type="text" asp-for="PostLink" placeholder="Nhập đường dẫn(nếu có)">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 js-ajaxUploadImages">
+                                    <div class="form-group">
+                                        <label>Hình ảnh</label>
+                                        <input class="form-control" type="file" asp-for="FileImage">
+                                        <input class="form-control" type="text" hidden asp-for="Logo">
+                                        @if (!string.IsNullOrEmpty(Model.Logo))
+                                        {
+                                            <a href="/@Model.Logo" target="_blank"><img src="/@Model.Logo" style="margin-top:10px" height="100" width="100" /></a>
+                                        }
+                                    </div>
+
+                                </div>
+                              
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" asp-for="IsEnglish"> English
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{   
+    <script>
+        $('.datetimepickerFromdate').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+        $('.datetimepickerTodate').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+    </script>
+}

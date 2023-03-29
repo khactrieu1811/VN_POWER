@@ -1,0 +1,94 @@
+﻿@using Website.Models
+@model LoginModel
+@{
+    ViewData["Title"] = "Logon";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/template/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 23 Apr 2020 08:29:26 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Vnpower Website Admin</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/admin/assets/img/logo_vnpower.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/style.css">
+
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper login-body">
+        <div class="login-wrapper">
+            <div class="container">
+                <div class="loginbox">
+                    <div class="login-left">
+                        <img class="img-fluid" src="~/admin/assets/img/logo_vnpower.png" alt="Logo">
+                    </div>
+                    <div class="login-right">
+                        <div class="login-right-wrap">
+                            <h1>Đăng nhập</h1>
+                            <p class="account-subtitle">Truy cập hệ thống Admin Vnpower website</p>
+
+                            <!-- Form -->
+                            <form method="post" class="needs-validation" novalidate>
+                                @*<div asp-validation-summary="All" class="invalid-feedback"></div>*@
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <input class="form-control" name="UserName" type="text" placeholder="Tên tài khoản">
+                                    <div class="invalid-tooltip">
+                                        Vui lòng Tên tài khoản!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="Password" type="password" placeholder="Mật khẩu">
+                                    <div class="invalid-tooltip">
+                                        Vui lòng nhập mật khẩu!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit" formaction="/admin/Signin">Login</button>
+                                </div>
+
+                            </form>
+                            <!-- /Form -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="~/admin/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/admin/assets/js/popper.min.js"></script>
+    <script src="~/admin/assets/js/bootstrap.min.js"></script>
+    <script src="~/admin/assets/js/form-validation.js"></script>
+    <!-- Custom JS -->
+    <script src="~/admin/assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/template/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 23 Apr 2020 08:29:27 GMT -->
+</html>
+
+

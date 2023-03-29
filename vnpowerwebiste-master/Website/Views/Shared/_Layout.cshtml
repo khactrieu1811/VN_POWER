@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Vnpower Website Admin - Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/admin/assets/img/logo_vnpower.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/assets/css/datetimepicker-bootstrap.css">
+    @* <link rel="stylesheet" href="~/admin/assets/css/bootstrap-datetimepicker.min.css">*@
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/font-awesome.min.css">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/feathericon.min.css">
+
+    <link rel="stylesheet" href="~/admin/assets/plugins/morris/morris.css">
+    <link href="~/admin/assets/css/select2.min.css" rel="stylesheet" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/admin/assets/css/style.css">
+    <link href="~/admin/assets/css/jquery.toast.css" rel="stylesheet" />
+    <script src="~/Admin/assets/plugins/quill/quill.min.js"></script>
+    <link href="~/Admin/assets/plugins/quill/quill.snow.css" rel="stylesheet" />
+    <link href="~/Admin/assets/plugins/quill/quill.bubble.css" rel="stylesheet" />
+    @RenderSection("CssSection", required: false)
+    <!--[if lt IE 9]>
+        <script src="~/admin/js/html5shiv.min.js"></script>
+        <script src="~/admin/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <div class="header">
+
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="/" class="logo">
+                    <img src="~/admin/assets/img/logo_vnpower.png" alt="Logo">
+                </a>
+                <a href="/" class="logo logo-small">
+                    <img src="~/admin/assets/img/logo_vnpower.png" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <!-- /Logo -->
+
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fe fe-text-align-left"></i>
+            </a>
+
+            <div class="top-nav-search">
+                <form>
+                    <input type="text" asp-for="@ViewData["CurrentFilter"]" name="search" class="form-control" placeholder="tìm kiếm">
+                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- /Mobile Menu Toggle -->
+            <!-- Header Right Menu -->
+            <partial name="_UserMenu" />
+
+            <!-- /Header Right Menu -->
+
+        </div>
+        <!-- /Header -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <!-- Sidebar -->
+            <partial name="_LeftMenu" />
+
+            <!-- /Sidebar -->
+        }
+
+        <!-- Page Wrapper -->
+        @RenderBody()
+        <!-- /Page Wrapper -->
+
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="/admin/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/admin/assets/js/popper.min.js"></script>
+    <script src="~/admin/assets/js/bootstrap.min.js"></script>
+    <script src="~/admin/assets/js/select2.min.js"></script>
+    <script src="~/admin/assets/js/moment.min.js"></script>
+    <script src="~/admin/assets/js/datetimepicker-bootstrap.js"></script>
+    @*  <script src="~/admin/assets/js/bootstrap-datetimepicker.min.js"></script>*@
+    <!-- Slimscroll JS -->
+    <script src="~/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/assets/plugins/raphael/raphael.min.js"></script>
+    @*<script src="~/admin/assets/plugins/morris/morris.min.js"></script>*@
+    @*<script src="~/admin/assets/js/chart.morris.js"></script>*@
+    <script src="~/admin/assets/js/jquery.toast.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/admin/assets/js/script.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+﻿.img {
+    width:350px;
+    height:350px;
+}
+.detail-container{
+    margin-left:40px;
+    font-size:16px;
+}
+.detail-item-description{
+    font-weight:700;
+    font-size:25px;
+}
+.hr{
+    height:2px;
+    width:100%;
+}
+.none {
+    display: none;
+}
+.font{
+    font-weight:700
+}
+.font-size{
+}

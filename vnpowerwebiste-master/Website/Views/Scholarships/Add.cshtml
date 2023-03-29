@@ -1,0 +1,198 @@
+﻿@using Business.IRepostitory
+@using Model
+@inject IRegionRepository RegionRepository
+@inject IScholarshipTypeRepository ScholarshipTypeRepository
+@model ScholarshipModel
+@{
+    ViewData["Title"] = "Add Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CssSection{
+    <link href="~/admin/assets/jquery-EasyAutocomplete/css/easy-autocomplete.min.css" rel="stylesheet" />
+
+
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/posts/index">Danh sách bài viết</a></li>
+                        <li class="breadcrumb-item active">Nhập bài viết</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập bài viết</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="formScholarship" action="/scholarships/Add" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Title bài viết</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập title bài viết" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Mô tả ngắn</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Tags:</label>
+                                        <div class="col-md-10 scholarship-tags__list">
+
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="TagsData" asp-for="Tags" hidden>
+                                            <input type="text" class="form-control" id="tags" placeholder="Nhập tag">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 mb-2">
+                                    <label class="col-form-label col-md-2">Nội dung bài viết</label>
+                                    <div class="col-md-10 m-b-50">
+                                        @await Component.InvokeAsync("TextEditor")
+                                        <input asp-for="PostContent" id="PostContent" hidden />
+                                        <div id="editor-container" style="min-height:300px">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 js-ajaxUploadImages">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Hình ảnh</label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="form-control" asp-for="FileImage" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @*  <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label class="col-form-label col-md-2">Region</label>
+                    <div class="col-md-10">
+                        <select class="select" asp-for="RegionId">
+                            <option>Select</option>
+                            @foreach (var item in RegionRepository.GetAllData().ToList())
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label class="col-form-label col-md-2">Loại học bổng</label>
+                    <div class="col-md-10">
+                        <select class="select" asp-for="ScholarshipTypeId">
+                            <option>Select</option>
+                            @foreach (var item in ScholarshipTypeRepository.GetAllData().ToList())
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>*@
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Ngày kết thúc</label>
+                                        <div class="col-md-10">
+                                            <input type='text' class="form-control" id='EndDate' asp-for="EndDateString" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Gán nhãn</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Label" class="form-control" asp-for="Label" placeholder="Nhập Hot, feature...">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="checkbox col-md-10">
+                                            <label>
+                                                <input type="checkbox" asp-for="IsEnglish"> English
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="checkbox col-md-10">
+                                            <label>
+                                                <input type="checkbox" asp-for="IsHotPost"> Sticky to Home
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12">
+                                <div class="form-group d-none" id="DisplayOrderToHome">
+                                    <label class="col-form-label col-md-2">Vị trí</label>
+                                    <div class="col-md-10">
+                                        <input type="number" class="form-control" asp-for="DisplayOrder">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    
+    <script src="~/admin/assets/jquery-EasyAutocomplete/js/jquery.easy-autocomplete.min.js"></script>
+    <script src="~/admin/assets/js/Application/Scholarships/ScholarshipAddorEdit.js"></script>
+    <script>
+        $("#IsHotPost").change(function () {
+            if (this.checked) {
+                $("#DisplayOrderToHome").removeClass("d-none")
+            }
+            else {
+                $("#DisplayOrderToHome").addClass("d-none")
+            }
+        });
+    </script>
+}

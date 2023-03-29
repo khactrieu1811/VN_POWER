@@ -1,0 +1,35 @@
+﻿@using Entities.Helpers
+@using Model
+@model BaseViewModel<PostModel>
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!-- End Preloader -->
+<!--Main content-->
+<section class="container margin-bottom-50">
+    <div class="tm-overflow-hidden row">
+        <div class="tm-gallery col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <h3 class="tm-gallery-title">Chi tiết bài viết</h3>
+            <hr color="green" border="2px" class="hr" />
+            @foreach (var i in Model.List)
+            {
+                <div class="">
+                    <p class="detail-item-description" style="text-align:center">@i.Name</p>
+                    <div>
+                        @Html.Raw(i.PostContent)
+                    </div>
+                    <hr color="green" border="2px" class="hr" />
+                </div>
+            }
+        </div>
+        <partial name="_LeftMenuProduct" />
+    </div>
+
+    <!--banner-->
+</section> <!-- Main content -->

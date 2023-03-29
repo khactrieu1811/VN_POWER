@@ -1,0 +1,60 @@
+﻿
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Nhập thông tin tìm kiếm</h4>
+                    <form action="/Questions/GetAll">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <select class="select" name="status">
+                                        <option disabled>Chọn trạng thái</option>
+                                        <option value="1">Chưa trả lời</option>
+                                        <option value="2">Đã trả lời</option>
+                                        <option value="3">Hoàn tất</option>
+                                        <option value="4">Đã xóa</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Từ ngày</label>
+                                            <div class="cal-icon"  id='datetimepickerFromdate'>
+                                                <input type="text" name ="fromdate" class="form-control datetimepicker" value="@ViewBag.Fromdate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Đến ngày</label>
+                                            <div class="cal-icon" id='datetimepickerTodate'>
+                                                <input type="text" name ="todate" class="form-control datetimepicker" value="@ViewBag.Todate" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <br />
+                                    <button type="submit" class="btn btn-primary search-btn"><i class="fe fe-search"></i> <span>Tìm kiếm</span></button>
+                                </div>
+
+                            </div>
+                        </div>
+                           
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,201 @@
+﻿@using Entities.Helpers
+@using Entities.Entities
+@model BaseViewModel<Partner>
+@{
+    PagedResultBase pagingModel = new PagedResultBase()
+    {
+        CurrentPage = Model.Data.PageIndex,
+        PageCount = Model.Data.TotalPages,
+        HasNextPage = Model.Data.HasNextPage,
+        HasPreviousPage = Model.Data.HasPreviousPage
+    };
+}
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5 col">
+                    <a href="/partners/Add" class="btn btn-primary float-right mt-2">Thêm mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Nhập thông tin tìm kiếm</h4>
+                        <form action="/partners/Index">
+                            <div class="row">
+                                <div class="col-md-3">
+
+                                    <div class="form-group">
+                                        <label>Trạng thái</label>
+                                        <select class="select" asp-for="SelectedStatus" asp-items="@Model.ListItems">
+                                        </select>
+                                    </div>
+
+                                </div>
+                              
+                                <div class="col-md-3">
+
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <br />
+                                        <button type="submit" class="btn btn-primary search-btn"><i class="fe fe-search"></i> <span>Tìm kiếm</span></button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Mô tả</th>
+                                        <th>Logo</th>
+                                        <th>Link bài viết</th>
+                                        <th>Loại</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Duyệt</th>
+                                        <th>Trạng thái</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data.Any())
+                                    {
+                                        @foreach (var q in Model.Data)
+                                        {
+
+                                    <tr>
+                                        <td>@q.Name</td>
+                                        <td>@q.Description</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(q.Logo))
+                                            {
+                                                <a href="/@q.Logo" target="_blank" class="avatar avatar-sm mr-2"><img class="avatar-img" src="/@q.Logo" alt="hình logo"></a>
+                                            }
+                                            else
+                                            {
+                                                <span>Chưa có file</span>
+                                            }
+
+                                        </td>
+                                        <td><a href="@q.PostLink" target="_blank"> Xem</a></td>
+
+                                        <td>
+                                            @if (q.IsEnglish)
+                                            {
+                                                <span>English</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Việt nam</span>
+                                            }
+
+                                        </td>
+                                        <td>@q.CreatedDate.ToString("dd-MM-yyyy HH:mm:ss")</td>
+                                        <td>
+
+                                            <div class="status-toggle">
+                                                @if (q.Status == ApplicationStatus.InProgress.GetHashCode())
+                                                {
+                                                    <input name="partnerStatus" type="checkbox" id="@q.Id" data-status="2" class="check">
+                                                }
+                                                else if (q.Status == ApplicationStatus.Completed.GetHashCode())
+                                                {
+                                                    <input name="partnerStatus" type="checkbox" id="@q.Id" data-status="1" class="check" checked>
+                                                }
+
+                                                <label for="@q.Id" class="checktoggle">checkbox</label>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            @if (q.Status == ApplicationStatus.Completed.GetHashCode())
+                                            {
+                                                <span class="badge badge-pill bg-success inv-badge">Hoàn thành</span>
+                                            }
+                                            else if (q.Status == ApplicationStatus.Delete.GetHashCode())
+                                            {
+                                                <span class="badge badge-pill bg-danger inv-badge">Đã xóa</span>
+                                            }
+                                            
+                                            else if (q.Status == ApplicationStatus.InProgress.GetHashCode())
+                                            {
+                                                <span class="badge badge-pill bg-warning inv-badge">Đang xử lý</span>
+                                            }
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="actions">
+                                                @if (q.Status == ApplicationStatus.InProgress.GetHashCode())
+                                                {
+
+                                                    <a data-toggle="modal" href="#delete-modal-@q.Id" class="btn btn-sm bg-danger-light">
+                                                        <i class="fe fe-trash"></i> Xóa
+                                                    </a>
+                                                }
+                                                <a href="/partners/Edit/@q.Id" class="btn btn-sm bg-primary-light">
+                                                    <i class="fe fe-pencil"></i> Chỉnh sửa
+                                                </a>
+
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                            <div class="modal fade" id="delete-modal-@q.Id" aria-hidden="true" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div class="form-content p-2 text-center">
+                                                                <h4 class="modal-title">Xóa Partner</h4>
+                                                                <p class="mb-4">Bạn muốn xóa Partner này không?</p>
+                                                                <button type="button" onclick="Remove('@q.Id')" class="btn btn-primary">Xóa </button>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @await Component.InvokeAsync("PagerView", pagingModel)
+        </div>
+
+
+        <!-- Delete Modal -->
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Partner.js"></script>
+}

@@ -1,0 +1,17 @@
+{
+  "Permissions": [
+    {
+      "Controller": "Home",
+      "Area": "",
+      "Allow": [],
+      "FullControl": true
+    },
+    {
+      "Controller": "Account",
+      "Area": "Admins",
+      "Allow": [ "Logon" ],
+      "FullControl": false
+    }
+  ]
+
+}

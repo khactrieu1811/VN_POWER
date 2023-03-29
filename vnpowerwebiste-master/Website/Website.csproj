@@ -1,0 +1,145 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Danhmucs\**" />
+    <Compile Remove="wwwroot\admin\assets\js\Application\NewFolder1\**" />
+    <Compile Remove="wwwroot\admin\assets\js\Application\NewFolder2\**" />
+    <Content Remove="Models\Danhmucs\**" />
+    <Content Remove="wwwroot\admin\assets\js\Application\NewFolder1\**" />
+    <Content Remove="wwwroot\admin\assets\js\Application\NewFolder2\**" />
+    <EmbeddedResource Remove="Models\Danhmucs\**" />
+    <EmbeddedResource Remove="wwwroot\admin\assets\js\Application\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\admin\assets\js\Application\NewFolder2\**" />
+    <None Remove="Models\Danhmucs\**" />
+    <None Remove="wwwroot\admin\assets\js\Application\NewFolder1\**" />
+    <None Remove="wwwroot\admin\assets\js\Application\NewFolder2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Accounts\AddAdministrator.cshtml~RF6788d2.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\Templetes\images\bee.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LazZiya.ExpressLocalization" Version="4.0.1" />
+    <PackageReference Include="LazZiya.TagHelpers" Version="4.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0-preview1.19506.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="NLog" Version="4.7.1" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
+    <PackageReference Include="NPOI" Version="2.5.1" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-rc0001" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0008" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+    <Content Update="Views\Menus\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Partners\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Posts\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\RegisterInformation\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Scholarships\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Services\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\Components\PagerView\Default.cshtml" />
+    <None Include="Views\Shared\Components\TextEditor\Default.cshtml" />
+    <None Include="Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="wwwroot\admin\assets\jquery-EasyAutocomplete\js\jquery.easy-autocomplete.js" />
+    <None Include="wwwroot\admin\assets\jquery-EasyAutocomplete\js\jquery.easy-autocomplete.min.js" />
+    <None Include="wwwroot\admin\assets\fonts\feathericon.svg" />
+    <None Include="wwwroot\admin\assets\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\admin\assets\js\Application\Settings\setting.js" />
+    <None Include="wwwroot\admin\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\admin\assets\js\chart.morris.js" />
+    <None Include="wwwroot\admin\assets\js\form-validation.js" />
+    <None Include="wwwroot\admin\assets\js\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\admin\assets\js\jquery.maskedinput.min.js" />
+    <None Include="wwwroot\admin\assets\js\mask.js" />
+    <None Include="wwwroot\admin\assets\js\popper.min.js" />
+    <None Include="wwwroot\admin\assets\js\script.js" />
+    <None Include="wwwroot\admin\assets\js\select2.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\datatables\datatables.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\datatables\jquery.dataTables.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\morris\morris.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\quill\quill.core.js" />
+    <None Include="wwwroot\admin\assets\plugins\quill\quill.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\raphael\raphael.min.js" />
+    <None Include="wwwroot\admin\assets\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <None Include="wwwroot\lib\signalr\signalr.js" />
+    <None Include="wwwroot\lib\signalr\signalr.js.map" />
+    <None Include="wwwroot\lib\signalr\signalr.min.js" />
+    <None Include="wwwroot\lib\signalr\signalr.min.js.map" />
+    <None Include="wwwroot\admin\assets\slick\config.rb" />
+    <None Include="wwwroot\admin\assets\slick\fonts\slick.svg" />
+    <None Include="wwwroot\admin\assets\slick\slick-theme.less" />
+    <None Include="wwwroot\admin\assets\slick\slick-theme.scss" />
+    <None Include="wwwroot\admin\assets\slick\slick.js" />
+    <None Include="wwwroot\admin\assets\slick\slick.less" />
+    <None Include="wwwroot\admin\assets\slick\slick.min.js" />
+    <None Include="wwwroot\admin\assets\slick\slick.scss" />
+    <None Include="wwwroot\Templetes\EmailConfirmation.html" />
+    <None Include="wwwroot\Templetes\images\facebook2x.png" />
+    <None Include="wwwroot\Templetes\images\instagram2x.png" />
+    <None Include="wwwroot\Templetes\images\linkedin2x.png" />
+    <None Include="wwwroot\Templetes\images\youtube2x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+</Project>

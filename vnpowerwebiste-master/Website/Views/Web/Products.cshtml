@@ -1,0 +1,52 @@
+﻿@using Entities.Helpers
+@using Entities.Entities
+@model BaseViewModel<Product>
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    PagedResultBase pagingModel = new PagedResultBase()
+    {
+        CurrentPage = Model.Data.PageIndex,
+        PageCount = Model.Data.TotalPages,
+        HasNextPage = Model.Data.HasNextPage,
+        HasPreviousPage = Model.Data.HasPreviousPage
+    };
+
+}
+<!-- Preloader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!-- End Preloader -->
+<!--Main content-->
+<section class="container margin-bottom-50">
+    <div class="tm-overflow-hidden row">
+        <partial name="_LeftMenuProduct" />
+        <div class="tm-gallery col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <h3 class="tm-gallery-title">Tất cả sản phẩm</h3>
+            <hr color="green" border="2px" class="hr" />
+            @if (Model.Data.Any())
+            {
+                @foreach (var q in Model.Data)
+                {
+                    <div class="tm-item-products">
+                        <img class="img-products" src="~/@q.Image" alt="Image">
+                        <p class="product-description">@q.Name</p><hr>
+                        <div class="tm-item-price-products">
+                            <span class="tm-item-price">@q.Price <span style="font-size:16px">&#8363;</span></span>
+                            <a href="#" class="tm-item-link">
+                                <span class="tm-item-action">Thêm vào giỏ</span>
+                                <img src="~/webdemo/img//plus.png" class="tm-item-add-icon" alt="Image">
+                            </a>
+                        </div>
+                        <a style="margin-left:30.5px;" href="/Web/Products/Chi-tiet/@q.MetaTitle" class="about-link about-link-2">Xem chi tiết</a>
+                    </div>
+                }
+            }
+            @await Component.InvokeAsync("PagerView", pagingModel)
+        </div>
+    </div>
+
+</section> <!-- Main content -->

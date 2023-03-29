@@ -1,0 +1,176 @@
+﻿
+@using Entities.Helpers
+@using Entities.Entities
+@model BaseViewModel<Category>
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    PagedResultBase pagingModel = new PagedResultBase()
+    {
+        CurrentPage = Model.Data.PageIndex,
+        PageCount = Model.Data.TotalPages,
+        HasNextPage = Model.Data.HasNextPage,
+        HasPreviousPage = Model.Data.HasPreviousPage
+    }; }
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5 col">
+                    <a href="/categories/Add" class="btn btn-primary float-right mt-2">Thêm mới</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Nhập thông tin tìm kiếm</h4>
+                        <form action="/categories/Index">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Từ ngày</label>
+                                                <div class="cal-icon" id='datetimepickerFromdate'>
+                                                    <input type="text" name="fromdate" class="form-control datetimepicker" value="@Model.FromDate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Đến ngày</label>
+                                                <div class="cal-icon" id='datetimepickerTodate'>
+                                                    <input type="text" name="todate" class="form-control datetimepicker" value="@Model.ToDate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <br />
+                                        <button type="submit" class="btn btn-primary search-btn"><i class="fe fe-search"></i> <span>Tìm kiếm</span></button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">Chuyên mục</th>
+                                        <th style="width: 15%">Mô tả</th>
+                                        <th style="width: 10%">Hình đại diện</th>
+                                        <th style="width: 10%">Chuyên mục cha</th>
+                                        <th style="width: 8%">Slug</th>
+                                        <th style="width: 9%">Ngày tạo</th>
+                                        <th style="width: 10%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data.Any())
+                                    {
+                                    @foreach (var q in Model.Data)
+                                    {
+                                        var ch = Model.Data.Where(x => x.Id == q.ParentId).ToList();
+                                    <tr>
+                                        <td>@q.Name</td>
+                                        <td class="text-wrap">@q.Description</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(q.Image))
+                                            {
+                                                <a href="/@q.Image" target="_blank" class="avatar avatar-sm mr-2"><img class="avatar-img" src="/@q.Image" alt="hình đại diện"></a> }
+                                            else
+                                            {
+                                                <span>Chưa có file</span>
+                                            }
+                                        </td>
+                                        @if (ch.Count() != 0)
+                                        {
+                                            @foreach (var x in ch)
+                                            {
+                                                <td>@x.Name</td>
+                                            } 
+                                        }
+                                        else
+                                        {
+                                            <td>Không có chuyên mục cha</td>
+                                        }
+
+                                        <td>@q.Slug</td>
+                                        <td>@q.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")</td>
+                                        <td class="text-right">
+                                            <div class="actions">
+                                                <a href="/categories/Edit/@q.Id" class="btn btn-sm bg-primary-light">
+                                                    <i class="fe fe-pencil"></i> Chỉnh sửa
+                                                </a>
+                                                @if (q.IsLocked)
+                                                {
+                                                    <a href="javascript:;" onclick="LockOrUnLock('@q.Id', 'False')" class="btn btn-sm bg-success-light  mt-1 ml-1">
+                                                    <i class="fe fe-unlock"></i> Mở Khóa
+                                                    </a>
+                                                    <a data-toggle="modal" href="#delete-modal-@q.Id" class="btn btn-sm bg-danger-light mt-1 ml-1">
+                                                        <i class="fe fe-trash"></i> Xóa
+                                                    </a> }
+                                                else
+                                                {
+
+                                                    <a href="javascript:;" onclick="LockOrUnLock('@q.Id', 'True')" class="btn btn-sm bg-danger-light mt-1">
+                                                        <i class="fe fe-lock"></i> Khóa
+                                                    </a>}
+                                            <div>
+                                        </td>
+                                      </tr>
+                            <div class="modal fade" id="delete-modal-@q.Id" aria-hidden="true" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="form-content p-2 text-center">
+                                                <h4 class="modal-title">Xóa chuyên mục</h4>
+                                                <p class="mb-4">Bạn muốn xóa Chuyên mục này không?</p>
+                                                <button type="button" onclick="Remove('@q.Id')" class="btn btn-primary">Xóa </button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @await Component.InvokeAsync("PagerView", pagingModel)
+        </div>
+
+
+        <!-- Delete Modal -->
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Categories/Category.js"></script>
+}
+

@@ -1,0 +1,119 @@
+﻿@using Model
+@model BannerModel
+@{
+    ViewData["Title"] = "AddBanner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/banners/getall">Danh sách banner</a></li>
+                        <li class="breadcrumb-item active">Nhập banner</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nhập banner</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/banners/AddBanner" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Tên Banner</label>
+                                        <input type="text" name="Name" class="form-control" asp-for="Name" placeholder="Nhập tên banner" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Chủ đề</label>
+                                        <input class="form-control" type="text" asp-for="Title" placeholder="Nhập chủ đề" />
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Đường dẫn trang web</label>
+                                        <input class="form-control" type="text" asp-for="LinkWeb" placeholder="Nhập đường dẫn(nếu có)">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 js-ajaxUploadImages">
+                                    <div class="form-group">
+                                        <label>Hình ảnh</label>
+                                        <input class="form-control" type="file" asp-for="FileImage" required>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Vị trí</label>
+                                        <input class="form-control" type="number" asp-for="Position" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Ngày bắt đầu</label>
+                                        <div class="cal-icon" id='datetimepickerFromdate'>
+                                            <input type="datetime" class="form-control datetimepickerFromdate" asp-for="StartDate" placeholder="Nhập ngày bắt đầu" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Ngày kết thúc</label>
+                                        <div class="cal-icon" id='datetimepickerTodate'>
+                                            <input type="datetime" class="form-control datetimepickerTodate" asp-for="EndDate" placeholder="Nhập ngày kết thúc" required>
+                                        </div>
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" asp-for="IsEnglish"> English
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Banner.js"></script>
+    
+    <script>
+        $('.datetimepickerFromdate').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+        $('.datetimepickerTodate').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+    </script>
+}

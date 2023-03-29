@@ -1,0 +1,168 @@
+﻿@using Model
+@model SettingModel
+@{ ViewData["Title"] = "Edit settings";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Edit Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/settings/Update" method="post" enctype="multipart/form-data" name="mainform">
+                            <div class="form-group row">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <input hidden asp-for="Id" />
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Title Website</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="PageTitle" placeholder="Nhập title " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Image Link</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="PageImageUrl" placeholder="Nhập Url " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Mô tả </label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="PageDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Thẻ meta</label>
+                                        <div class="col-md-10">
+                                            <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" asp-for="MetaDesc"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Facebook</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="FacebookLink" placeholder="Nhập Link " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Youtube</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="YoutubeLink" placeholder="Nhập Link " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Linked in</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="LinkedInLink" placeholder="Nhập Link " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Instagram</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" asp-for="InstagramLink" placeholder="Nhập Link " required>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-2">Ngôn ngữ mặc định</label>
+                                        <div class="col-md-10">
+                                            <select class="select" asp-for="DefaultLanguage">
+                                                <option value="EN">Tiếng Anh</option>
+                                                <option value="VN">Tiếng Việt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 mb-2">
+                                    <label class="col-form-label col-md-10">Nội dung Terms And Conditions</label>
+                                    <div class="col-md-10 m-b-50">
+                                        @await Component.InvokeAsync("TextEditor")
+                                        <input asp-for="TermsAndConditions" id="PostContent" hidden />
+                                        <div id="editor-container" style="min-height:300px">
+                                            @Html.Raw(Model.TermsAndConditions)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-2">Thông tin Công Ty</label>
+                                    <div class="col-md-10">
+
+                                        <input asp-for="CompanyInfo" id="CompanyInfo" hidden />
+                                        <div id="editor-info" style="min-height:300px">
+                                            @Html.Raw(Model.CompanyInfo)
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-2">Logo</label>
+                                    <div class="col-md-10">
+                                        <input type="file" class="form-control" asp-for="FileLogo" placeholder="Nhập Logo">
+                                        @if (!string.IsNullOrEmpty(Model.Logo))
+                                        {
+                                          <input type="hidden" class="form-control" asp-for="Logo" value="@Model.Logo" placeholder="Nhập Logo">
+                                                    <a href="@Model.Logo" target="_blank"><img src="@Model.Logo" style="margin-top:10px" width="200" /></a>}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-5 align-items-end" type="submit">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/admin/assets/js/Application/Settings/setting.js"></script>
+}

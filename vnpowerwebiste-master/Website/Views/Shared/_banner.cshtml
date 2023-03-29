@@ -1,0 +1,36 @@
+﻿@using Business.IRepostitory
+@using System.Security.Claims
+@inject IBannerRepository BannerRepository
+@{
+    var Menus = await BannerRepository.GetAllBanners();
+}
+<div class="templatemo-welcome welcome-slider">
+                <div class="container">
+                    <div class="row">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                 @foreach (var i in Menus){
+                                <li>
+                                    <div class="about-slider">
+                                       <a href="@i.LinkWeb">
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                            <img src="~/@i.ImageLink" class="img-responsive" alt="Image">
+                                        </div>
+                                        
+                                        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 about-slider-description">
+                                            <h2 class="text-uppercase welcome-title">
+                                                <span class="welcome-title-1">@i.Name</span>
+                                            </h2>
+                                            <p class="welcome-message">
+                                                @i.Title
+                                            </p>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
